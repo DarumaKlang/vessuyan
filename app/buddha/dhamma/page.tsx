@@ -37,18 +37,18 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 2 */}
-                    <Link href="#" className="block">
+                    <Link href="dhamma/threefold-training" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">พุทธประวัติ</h2>
-                            <p className="text-white">เรื่องราวของพระพุทธเจ้าตั้งแต่ประสูติจนปรินิพพาน</p>
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธรรมในหมวด ๓ ไตรสิกขา</h2>
+                            <p className="text-white">ไตรสิกขา หลักการการฝึกฝนเพื่อพัฒนาตนเอง</p>
                         </div>
                     </Link>
 
                     {/* Article Card 3 */}
                     <Link href="/buddha/meditate" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">บทสวดมนต์</h2>
-                            <p className="text-white">บทสวดมนต์เพื่อการทำสมาธิและบูชา</p>
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธรรมในหมวด ๔ อิทธิบาท ๔</h2>
+                            <p className="text-white">อิทธิบาท ๔ หลักธรรมที่นำไปสู่ความสำเร็จ</p>
                         </div>
                     </Link>
 
