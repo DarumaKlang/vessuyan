@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./styles/globals.css";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Charm } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"] });
+const charm = Charm({
+    subsets: ['thai'],
+    weight: ['400', '700'],
+});
 
 export const metadata: Metadata = {
-  title: "Vessuyan - เว็บไซต์ดูดวง",
-  description: "บริการดูดวง โหราศาสตร์ ไพ่ยิปซี และศาสตร์ตัวเลข",
+    title: 'Vessuyan - โหราศาสตร์และไพ่ยิปซี',
+    description: 'เว็บไซต์ดูดวง โหราศาสตร์ไทย ไพ่ยิปซี และศาสตร์ตัวเลข',
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="th">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html lang="th">
+            <body className={charm.className}>{children}</body>
+        </html>
+    );
 }
