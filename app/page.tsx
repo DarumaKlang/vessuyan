@@ -26,7 +26,7 @@ export default function Home() {
             <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-100px)] text-center text-white p-8">
                 {/* Site Title and Slogan */}
                 <div className="mb-8 mt-16 md:mt-0">
-                    <h1 className="text-4xl md:text-6xl font-bold text-secondary-gold drop-shadow-lg">Vessuyan</h1>
+                    <h1 className="text-4xl md:text-6xl font-bold text-secondary-gold drop-shadow-lg">VESSUYAN</h1>
                     <p className="mt-2 text-md md:text-xl text-white drop-shadow">ศาสตร์แห่งการทำนายที่น่าเชื่อถือ</p>
                 </div>
 

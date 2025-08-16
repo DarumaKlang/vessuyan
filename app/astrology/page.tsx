@@ -37,7 +37,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 2: Monday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/monday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันจันทร์ ๒</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
@@ -45,7 +45,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 3: Tuesday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/tuesday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันอังคาร ๓</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
@@ -53,7 +53,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 4: Wednesday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/wednesday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันพุธ ๔</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
@@ -61,7 +61,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 5: Thursday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/thursday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันพฤหัส ๕</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
@@ -69,7 +69,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 6: Friday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/friday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันศุกร์ ๖</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
@@ -77,7 +77,7 @@ export default function AstrologyPage() {
                     </Link>
 
                     {/* Article Card 7: Saturday Time */}
-                    <Link href="#" className="block">
+                    <Link href="/astrology/saturday/time" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาลประจำวันเสาร์ ๗</h2>
                             <p className="text-white">ความหมายของยามอัฐกาล</p>
