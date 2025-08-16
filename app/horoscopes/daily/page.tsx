@@ -1,7 +1,9 @@
-// daily horoscope : /app/horoscopes/daily/page.tsx
 // src/app/horoscopes/daily/page.tsx
+'use client';
+
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import BirthdayCalculatorCard from '@/components/BirthdayCalculatorCard';
 
 export default function DailyHoroscopePage() {
     return (
@@ -26,10 +28,12 @@ export default function DailyHoroscopePage() {
                 <div className="bg-white/10 backdrop-blur-md p-8 rounded-lg shadow-xl border border-secondary-gold/30 max-w-4xl w-full">
                     <h1 className="text-4xl md:text-5xl font-bold text-secondary-gold drop-shadow-lg mb-4">ดูดวงรายวัน</h1>
                     <p className="text-lg text-white mb-6">ตรวจสอบดวงชะตาประจำวันของคุณได้ที่นี่</p>
-                    {/* Add content for daily horoscope here */}
-                    <div className="mt-8 text-left">
-                        <p className="text-white">เนื้อหาและฟังก์ชันการดูดวงรายวันจะถูกเพิ่มในภายหลัง...</p>
+                    
+                    {/* Birthday Calculator Card Component */}
+                    <div className="mt-8">
+                        <BirthdayCalculatorCard />
                     </div>
+                    
                 </div>
             </div>
         </main>
