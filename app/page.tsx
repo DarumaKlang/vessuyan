@@ -3,6 +3,8 @@
 
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
+import SocialButtons from '@/components/SocialButtons'; // Import the new component
 
 export default function Home() {
     return (
@@ -31,26 +33,35 @@ export default function Home() {
                 </div>
 
                 {/* Section for Services */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl px-4 md:px-0">
                     {/* Card 1: ดูดวงรายวัน */}
-                    <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30">
-                        <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดูดวงรายวัน</h2>
-                        <p className="text-white">ตรวจสอบดวงชะตาประจำวันของคุณได้ที่นี่</p>
-                    </div>
+                    <Link href="/horoscopes/daily" passHref>
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 cursor-pointer hover:bg-white/20 transition-all">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดูดวงรายวัน</h2>
+                            <p className="text-white">ตรวจสอบดวงชะตาประจำวันของคุณได้ที่นี่</p>
+                        </div>
+                    </Link>
 
                     {/* Card 2: ไพ่ยิปซี */}
-                    <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30">
-                        <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ไพ่ยิปซี</h2>
-                        <p className="text-white">เปิดไพ่ทำนายเรื่องรัก การเงิน และการงาน</p>
-                    </div>
+                    <Link href="/horoscopes/tarot" passHref>
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 cursor-pointer hover:bg-white/20 transition-all">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ไพ่ยิปซี</h2>
+                            <p className="text-white">เปิดไพ่ทำนายเรื่องรัก การเงิน และการงาน</p>
+                        </div>
+                    </Link>
 
                     {/* Card 3: ศาสตร์ตัวเลข */}
-                    <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30">
-                        <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ศาสตร์ตัวเลข</h2>
-                        <p className="text-white">ความหมายของตัวเลขที่คุณไม่เคยรู้</p>
-                    </div>
+                    <Link href="/horoscopes/numerology" passHref>
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 cursor-pointer hover:bg-white/20 transition-all">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ศาสตร์ตัวเลข</h2>
+                            <p className="text-white">ความหมายของตัวเลขที่คุณไม่เคยรู้</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
+
+            {/* Social Buttons Section at the bottom */}
+            <SocialButtons />
         </main>
     );
 }
