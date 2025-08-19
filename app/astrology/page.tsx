@@ -84,6 +84,46 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
+                    {/* Article Card 8: domicile */}
+                    <Link href="/astrology/domicile" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดาวเกษตร และ ดาวประเกษตร</h2>
+                            <p className="text-white">ความหมายของดาวเกษตร และ ดาวประเกษตร</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 9: exaltation */}
+                    <Link href="/astrology/exaltation" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาอุจจ์</h2>
+                            <p className="text-white">ความแข็งแกร่งในผลงาน และ หน้าที่การงาน</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 10: fall */}
+                    <Link href="/astrology/fall" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงนิจจ์</h2>
+                            <p className="text-white">ตำแหน่งที่ดาวเคราะห์ โคจรไปอยู่ในจุดที่ต่ำที่สุด ในจักรราศี</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 11: mahajak */}
+                    <Link href="/astrology/mahajak" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาจักร</h2>
+                            <p className="text-white">ตำแหน่งดาวที่ให้คุณอย่างยิ่ง ในด้านความเจริญรุ่งเรือง</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 12: circular-horoscope */}
+                    <Link href="/astrology/circular-horoscope" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">จักราศี</h2>
+                            <p className="text-white">ตำแหน่งดาวที่ให้คุณอย่างยิ่ง ในด้านความเจริญรุ่งเรือง</p>
+                        </div>
+                    </Link>
+
                     {/* Add more cards here */}
 
                 </div>
