@@ -45,10 +45,18 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 3 */}
-                    <Link href="/buddha/meditate" className="block">
+                    <Link href="dhamma/nyan" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธรรมในหมวด ๔ อิทธิบาท ๔</h2>
-                            <p className="text-white">อิทธิบาท ๔ หลักธรรมที่นำไปสู่ความสำเร็จ</p>
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ญาณ ๑๖</h2>
+                            <p className="text-white">ลำดับการปฏิบัติทางปัญญาในแนวทางของวิปัสสนากรรมฐาน</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 4 */}
+                    <Link href="dhamma/ariyamagga" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">อริยบุคคล ๔</h2>
+                            <p className="text-white">เส้นทางสู่การบรรลุธรรม</p>
                         </div>
                     </Link>
 
