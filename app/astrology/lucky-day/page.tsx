@@ -4,7 +4,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
-import LuckyDayCard from '@/components/LuckyDayCard';
 
 // ข้อมูลดิถีฤกษ์ไชยทั้งหมดในรูปแบบ Array of Objects
 const luckyDaysData = [
@@ -24,6 +23,21 @@ const luckyDaysData = [
     { day: '๑๔ ค่ำ', meaning: 'ศัตรูปองฆ่า', status: 'ไม่ดี' },
     { day: '๑๕ ค่ำ', meaning: 'วายชีวาบ่คืน', status: 'ไม่ดี' },
 ];
+
+// Component ย่อยสำหรับแสดงผลข้อมูลดิถีฤกษ์ไชย
+const LuckyDayCard = ({ day, meaning, status }) => {
+    // กำหนดสีตามสถานะ 'ดี' หรือ 'ไม่ดี'
+    const statusColor = status === 'ดี' ? 'text-secondary-gold' : 'text-red-400';
+
+    return (
+        <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg shadow-md border border-secondary-gold/20 flex flex-col items-start space-y-1">
+            <p className="text-lg font-semibold">
+                <span className={`font-bold ${statusColor}`}>{day} :</span>
+                <span className="text-white ml-2">{meaning} ({status})</span>
+            </p>
+        </div>
+    );
+};
 
 export default function LuckydayPage() {
     return (
