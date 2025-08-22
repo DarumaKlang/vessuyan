@@ -60,6 +60,14 @@ export default function DhammaPage() {
                         </div>
                     </Link>
 
+                    {/* Article Card 5 */}
+                    <Link href="dhamma/dhammadesana-related" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธัมมเทสนาปฏิสังยุตต์ ๑๖</h2>
+                            <p className="text-white">มารยาทของภิกษุเกี่ยวกับการแสดงธรรม 16 ข้อ</p>
+                        </div>
+                    </Link>
+
                     {/* Add more cards here */}
 
                 </div>

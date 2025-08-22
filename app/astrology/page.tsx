@@ -124,6 +124,14 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
+                    {/* Article Card 13: double-number */}
+                    <Link href="/astrology/double-number" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">"คู่เลข" หรือ "เลขคู่มงคล"</h2>
+                            <p className="text-white">การนำเลขสองตัวมาจับคู่กันเพื่อเสริมดวงในด้านต่างๆ</p>
+                        </div>
+                    </Link>
+
                     {/* Article Card 13: circular-horoscope (Work in Progress) */}
                     {/*
                     <Link href="/astrology/circular-horoscope" className="block">
