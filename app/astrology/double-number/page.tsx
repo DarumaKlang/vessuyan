@@ -5,7 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import NumberPairCard from '@/components/NumberPairCard'; // Import component ใหม่
+import NumberPairCard from '@/components/NumberPairCard';
 
 // ข้อมูลคู่เลขทั้งหมดในรูปแบบ Array of Objects
 const numberPairsData = [

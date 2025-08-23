@@ -1,13 +1,18 @@
-// src/components/LuckyDayCard.tsx
-// Component ใหม่สำหรับแสดงผลข้อมูลดิถีฤกษ์ไชย
+'use client';
+
 import React from 'react';
 
+// กำหนดประเภทของ props สำหรับ LuckyDayCard เพื่อความปลอดภัยของข้อมูล
 interface LuckyDayCardProps {
     day: string;
     meaning: string;
     status: 'ดี' | 'ไม่ดี';
 }
 
+/**
+ * คอมโพเนนต์สำหรับแสดงข้อมูลดิถีฤกษ์ไชยในแต่ละวัน
+ * @param {LuckyDayCardProps} props - ข้อมูลวัน, ความหมาย, และสถานะ
+ */
 const LuckyDayCard: React.FC<LuckyDayCardProps> = ({ day, meaning, status }) => {
     // กำหนดสีตามสถานะ 'ดี' หรือ 'ไม่ดี'
     const statusColor = status === 'ดี' ? 'text-secondary-gold' : 'text-red-400';
