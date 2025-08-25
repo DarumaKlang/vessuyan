@@ -52,7 +52,15 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
-                    {/* Article Card 4: domicile */}
+                    {/* Article Card 4: taksa */}
+                    <Link href="/astrology/taksa" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ทักษา</h2>
+                            <p className="text-white">ตำแหน่งทักษาดาว ที่จะบอกคุณและโทษ</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 5: domicile */}
                     <Link href="/astrology/domicile" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดาวเกษตร และ ดาวประเกษตร</h2>
@@ -60,7 +68,7 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
-                    {/* Article Card 5: exaltation */}
+                    {/* Article Card 6: exaltation */}
                     <Link href="/astrology/exaltation" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาอุจจ์</h2>
@@ -68,7 +76,7 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
-                    {/* Article Card 6: fall */}
+                    {/* Article Card 7: fall */}
                     <Link href="/astrology/fall" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงนิจจ์</h2>
@@ -76,7 +84,7 @@ export default function AstrologyPage() {
                         </div>
                     </Link>
 
-                    {/* Article Card 7: mahajak */}
+                    {/* Article Card 8: mahajak */}
                     <Link href="/astrology/mahajak" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาจักร</h2>
