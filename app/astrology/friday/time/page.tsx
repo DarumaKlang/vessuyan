@@ -5,9 +5,10 @@ import React from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import AuspiciousTimeCard from '../../../../components/AuspiciousTimeCard';
+import BackButton from '@/components/BackButton'; // <-- นำเข้า Component ใหม่
 
 const FridayAuspiciousTimes = () => {
-    // ข้อมูลฤกษ์ยามวันศุกร์ (กลางวัน) พร้อมข้อมูลยามสามตา
+    // โค้ดข้อมูล dayTimes และ nightTimes ... (ไม่ต้องแก้ไข)
     const dayTimes = [
         { time: 'ยาม ๑ ศุกระ ๖ 06.00 น. - 07.30 น.', auspicious: 'ศุกระยามมหาสถาผล พระสุทนมาเกิดกำเนิดสนอง เป็นกษัตริย์ฟุ้งเฟื่องอันเรืองรอง ได้ครอบครองสมบัติสวัสดี', samTaUp: '๑', samTaRam: '๒' },
         { time: 'ยาม ๒ พุธะ ๔ 07.30 น. - 09.00 น.', auspicious: 'พุธะพระได้มะโนเรศ เป็นปิ่นเกษไกรลาศคีริศรี โฉมสำอางค์นางฟ้ากุมารี พระภูมีเชยชมภิรมย์ทรวง', samTaUp: '๒', samTaRam: '๓' },
@@ -18,8 +19,6 @@ const FridayAuspiciousTimes = () => {
         { time: 'ยาม ๗ สุริชะ ๑ 15.00 น. - 16.30 น.', auspicious: 'สุริชะมาปะเมื่อนางสรง แล้วให้พระธำรงค์อันเรื่องศรี รู้ว่าอธิบดินทร์ก็ยินดี กินนรีสอดดูพระภูธร', samTaUp: '๑', samTaRam: '๒' },
         { time: 'ยาม ๘ ศุกระ ๖ 16.30 น. - 18.00 น.', auspicious: 'ศุกระพระได้เสวยสุข นิราศทุกข์ภิญโญสโมสร ได้นางคืนชื่นจิตต์สนิทนอน สถาพรพูลสวัสดิ์เป็นอัตรา', samTaUp: '๒', samTaRam: '๓' },
     ];
-
-    // ข้อมูลฤกษ์ยามวันศุกร์ (กลางคืน) พร้อมข้อมูลยามสามตา
     const nightTimes = [
         { time: 'ยาม ๑ ศุโกร ๖ 18.00 น. - 19.30 น.', auspicious: 'ศุโกรโอฬาร์มหาวิเศษ เหมือนพระเวสสันดรนาถา ครองพิภพสีพีเธอปรีดา ฝูงประชาชนชื่นทุกคืนวัน', samTaUp: '๓', samTaRam: '๑' },
         { time: 'ยาม ๒ ภุมโม ๓ 19.30 น. - 21.00 น.', auspicious: 'ภุมโมยามร้ายให้ขัดขวาง เธอให้ช้างเผือกผู้ตัวขยัน พลเมืองกริ้วโกรธต้องโทษทัณฑ์ ก็ชวนกันปรึกษาว่าไม่ดี', samTaUp: '๑', samTaRam: '๒' },
@@ -33,7 +32,6 @@ const FridayAuspiciousTimes = () => {
 
     return (
         <main className="relative min-h-screen">
-            {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/background-vessuyan.png"
@@ -45,13 +43,10 @@ const FridayAuspiciousTimes = () => {
                 <div className="absolute inset-0 bg-primary-purple opacity-70"></div>
             </div>
 
-            {/* Navbar */}
             <Navbar />
 
-            {/* Content */}
             <div className="relative z-10 container mx-auto p-8 pt-20 pb-[100px] text-white max-w-7xl">
                 <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg text-center md:text-left">ฤกษ์ยามวันศุกร์</h1>
-
                 <div className="mb-8">
                     <h2 className="text-2xl font-semibold mb-4 text-secondary-gold drop-shadow-md">ฤกษ์ยาม (เวลากลางวัน)</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -69,6 +64,9 @@ const FridayAuspiciousTimes = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* ใช้งาน Component BackButton ใหม่ */}
+                <BackButton href="/astrology" label="กลับไปที่บทความโหราศาสตร์" />
             </div>
         </main>
     );

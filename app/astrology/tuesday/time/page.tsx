@@ -5,6 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import AuspiciousTimeCard from '../../../../components/AuspiciousTimeCard';
+import BackButton from '@/components/BackButton'; // <-- นำเข้า Component ใหม่
 
 const TuesdayAuspiciousTimes = () => {
     // ข้อมูลฤกษ์ยามวันอังคาร (กลางวัน) พร้อมข้อมูลยามสามตา
@@ -69,6 +70,10 @@ const TuesdayAuspiciousTimes = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* ใช้งาน Component BackButton ใหม่ */}
+                <BackButton href="/astrology" label="กลับไปที่บทความโหราศาสตร์" />
+
             </div>
         </main>
     );

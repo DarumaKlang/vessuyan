@@ -46,6 +46,7 @@ export default function JakraseePage() {
                     <ThaiHoroscopeChart chartData={jakraseeData} />
                 </div>
             </div>
+
         </main>
     );
 }
