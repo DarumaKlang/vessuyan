@@ -91,6 +91,22 @@ export default function AstrologyPage() {
                             <p className="text-white">ตำแหน่งดาวที่ให้คุณอย่างยิ่ง ในด้านความเจริญรุ่งเรือง</p>
                         </div>
                     </Link>
+
+                    {/* Article Card 9: year */}
+                    <Link href="/astrology/year" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">เกี่ยวกับ ปี</h2>
+                            <p className="text-white">เกี่ยวกับ ปีจันทรคติ ปีสุริยคติ และ ปีนักษัตร</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 10: zodiact */}
+                    <Link href="/astrology/zodiact" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">12 จักราศี</h2>
+                            <p className="text-white">เกี่ยวกับ 12 ราศี</p>
+                        </div>
+                    </Link>
                     
                 </div>
             </div>
