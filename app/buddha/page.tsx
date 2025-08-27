@@ -36,11 +36,11 @@ export default function BuddhaPage() {
                         </div>
                     </Link>
 
-                    {/* Article Card 2 */}
-                    <Link href="#" className="block">
+                    {/* Article Card 2 The Buddha that you should pay respect to */}
+                    <Link href="/buddha/respect" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">พุทธประวัติ</h2>
-                            <p className="text-white">เรื่องราวของพระพุทธเจ้าตั้งแต่ประสูติจนปรินิพพาน</p>
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">พระที่ควรไปไหว้</h2>
+                            <p className="text-white">พระที่ควรไปไหว้</p>
                         </div>
                     </Link>
 
