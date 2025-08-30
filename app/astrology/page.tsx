@@ -1,114 +1,89 @@
-// src/app/astrology/page.tsx
-'use client';
-
-import Image from 'next/image';
+import Image from "next/image";
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 
 export default function AstrologyPage() {
     return (
         <main className="relative min-h-screen">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/background-vessuyan.png"
-                    alt="Astrology Articles Background"
-                    fill
-                    className="object-cover"
-                    quality={100}
-                />
-                <div className="absolute inset-0 bg-primary-purple opacity-70"></div>
-            </div>
-
-            {/* Navbar */}
+            {/* Header and Navigation */}
             <Navbar />
 
             {/* Content */}
-            <div className="relative z-10 p-8 text-white max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg">บทความโหราศาสตร์และไพ่ยิปซี</h1>
+            <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-100px)] text-center text-white p-8">
+                {/* Cards Component */}
+                <div className="flex flex-col items-center justify-center space-y-4">
+                    <h2 className="text-3xl font-bold mb-8">ตัวอย่าง API</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* Article Card 1: lucky-day */}
-                    <Link href="/astrology/lucky-day" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดิถีฤกษ์ไชย</h2>
-                            <p className="text-white">ปฏิทินแห่งความมงคลสำหรับกิจกรรมสำคัญ</p>
+                    {/* API Card 1 */}
+                    <Link href="/apipages/phases-moon">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 text-white flex flex-col items-center transition-transform duration-200 ease-in-out transform hover:scale-105 cursor-pointer w-72">
+                            <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400">
+                                ข้างขึ้น - ข้างแรม
+                            </h3>
+                            <p className="text-gray-400">Card Component คำนวณ ข้างขึ้น-ข้างแรม</p>
                         </div>
                     </Link>
 
-                    {/* Article Card 2: yamathaglan */}        
-                    <Link href="/astrology/yamathaglan" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ยามอัฐกาล</h2>
-                            <p className="text-white">เวลาแห่งความเจริญรุ่งเรือง</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 3: double-number */}
-                    <Link href="/astrology/double-number" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">"คู่เลข" หรือ "เลขคู่มงคล"</h2>
-                            <p className="text-white">การนำเลขสองตัวมาจับคู่กันเพื่อเสริมดวงในด้านต่างๆ</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 4: taksa */}
-                    <Link href="/astrology/taksa" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ทักษา</h2>
-                            <p className="text-white">ตำแหน่งทักษาดาว ที่จะบอกคุณและโทษ</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 5: domicile */}
-                    <Link href="/astrology/domicile" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดาวเกษตร และ ดาวประเกษตร</h2>
-                            <p className="text-white">ความหมายของดาวเกษตร และ ดาวประเกษตร</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 6: exaltation */}
-                    <Link href="/astrology/exaltation" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาอุจจ์</h2>
-                            <p className="text-white">ความแข็งแกร่งในผลงาน และ หน้าที่การงาน</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 7: fall */}
-                    <Link href="/astrology/fall" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงนิจจ์</h2>
-                            <p className="text-white">ตำแหน่งที่ดาวเคราะห์ โคจรไปอยู่ในจุดที่ต่ำที่สุด ในจักรราศี</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 8: mahajak */}
-                    <Link href="/astrology/mahajak" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ดวงมหาจักร</h2>
-                            <p className="text-white">ตำแหน่งดาวที่ให้คุณอย่างยิ่ง ในด้านความเจริญรุ่งเรือง</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 9: year */}
-                    <Link href="/astrology/year" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">เกี่ยวกับ ปี</h2>
-                            <p className="text-white">เกี่ยวกับ ปีจันทรคติ ปีสุริยคติ และ ปีนักษัตร</p>
-                        </div>
-                    </Link>
-
-                    {/* Article Card 10: zodiact */}
-                    <Link href="/astrology/zodiact" className="block">
-                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">12 จักราศี</h2>
-                            <p className="text-white">เกี่ยวกับ 12 ราศี</p>
+                    {/* API Card 2 */}
+                    <Link href="/apipages/yamathagran">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 text-white flex flex-col items-center transition-transform duration-200 ease-in-out transform hover:scale-105 cursor-pointer w-72">
+                            <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400">
+                                ยามอัฐกาล
+                            </h3>
+                            <p className="text-gray-400">Card Component นาฬิกาบอกยาม</p>
                         </div>
                     </Link>
                     
                 </div>
+
+                {/* Footer */}
+                <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center mt-auto">
+                    <a
+                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            aria-hidden
+                            src="/file.svg"
+                            alt="File icon"
+                            width={16}
+                            height={16}
+                        />
+                        Learn
+                    </a>
+                    <a
+                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            aria-hidden
+                            src="/window.svg"
+                            alt="Window icon"
+                            width={16}
+                            height={16}
+                        />
+                        Examples
+                    </a>
+                    <a
+                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            aria-hidden
+                            src="/globe.svg"
+                            alt="Globe icon"
+                            width={16}
+                            height={16}
+                        />
+                        Go to nextjs.org →
+                    </a>
+                </footer>
             </div>
         </main>
     );

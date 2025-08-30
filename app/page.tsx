@@ -1,10 +1,10 @@
-// src/app/page.tsx
 'use client';
 
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import SocialButtons from '@/components/SocialButtons'; // Import the new component
+import SocialButtons from '@/components/SocialButtons';
+import YamaAthaganClock from '@/components/YamaAthaganClock'; // นำเข้า Component นาฬิกายามอัฐกาล
 
 export default function Home() {
     return (
@@ -60,8 +60,20 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* Card Component YamaAthaganClock */}
+            <div className="relative z-10 p-8 text-white max-w-7xl mx-auto">
+                <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg text-center">
+                    บริการของเรา
+                </h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <YamaAthaganClock />
+                </div>
+            </div>
+
             {/* Social Buttons Section at the bottom */}
-            <SocialButtons />
+            <div className="relative z-10 p-8 text-white max-w-7xl mx-auto">
+                <SocialButtons />
+            </div>
         </main>
     );
 }
