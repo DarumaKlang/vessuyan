@@ -103,8 +103,8 @@ export default function AstrologyPage() {
                     {/* Article Card 10: zodiact */}
                     <Link href="/astrology/zodiact" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
-                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">12 จักราศี</h2>
-                            <p className="text-white">เกี่ยวกับ 12 ราศี</p>
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">จักราศี</h2>
+                            <p className="text-white">คำทำนายเกี่ยวกับ 12 ราศี</p>
                         </div>
                     </Link>
 
