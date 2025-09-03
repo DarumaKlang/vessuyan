@@ -6,6 +6,7 @@ import Link from 'next/link';
 import SocialButtons from '@/components/SocialButtons';
 import YamaAthaganClock from '@/components/YamaAthaganClock'; // นำเข้า Component นาฬิกายามอัฐกาล
 import CurrentDayCard from '@/components/CurrentDayCard';
+import CurrentZodiactCard from '@/components/CurrentZodiactCard';
 
 export default function Home() {
     return (
@@ -74,7 +75,7 @@ export default function Home() {
                         <CurrentDayCard />
                     </div>
                     <div className="flex-1">
-                        <CurrentDayCard />
+                        <CurrentZodiactCard />
                     </div>
                 </div>
             </div>
