@@ -67,7 +67,7 @@ export default function Home() {
                 <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg text-center">
                     บริการของเรา
                 </h1>
-                <div className="flex flex-col md:flex-row md:space-x-4 p-4 items-stretch justify-center">
+                <div className="flex flex-col md:flex-row md:space-x-4 **space-y-4** p-4 items-stretch justify-center">
                     <div className="flex-1">
                         <YamaAthaganClock />
                     </div>
