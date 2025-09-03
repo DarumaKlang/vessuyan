@@ -108,7 +108,7 @@ const YamaAthaganClock: React.FC = () => {
     const yamaData = dayOfWeek ? dayOfWeek[astrologyData!.yamPeriod][astrologyData!.yamNumber - 1] : null;
 
     return (
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 text-white flex flex-col">
+        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 text-white flex flex-col h-full w-full">
             <h2 className="text-2xl font-bold text-secondary-gold mb-2">
                 นาฬิกายามอัฐกาล
             </h2>

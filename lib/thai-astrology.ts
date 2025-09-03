@@ -138,10 +138,10 @@ export async function getThaiAstrologyInfo(birthDate: string): Promise<Astrology
 
     const htmlResult = `
         <div class="text-left space-y-2 text-white">
-            <p><b>เกิดวันที่:</b> ${luxonDate.day} ${thaiMonth} ${buddhistYear}</p>
-            <p><b>เวลาเกิด:</b> ${timeString} น. (${yamString})</p>
-            <p><b>ตรงกับ:</b> ${dayOfWeek} ${waxingWaning} เดือน ${thaiLunarMonthThai} ปี${animalYear}</p>
-            <p><b>ดิถีฤกษ์ไชย:</b> ${dithi}</p>
+            <p><b>วันที่ :</b> ${luxonDate.day} ${thaiMonth} ${buddhistYear}</p>
+            <p><b>เวลา :</b> ${timeString} น. (${yamString})</p>
+            <p><b>ตรงกับวัน :</b> ${dayOfWeek} ${waxingWaning} เดือน ${thaiLunarMonthThai} ปี${animalYear}</p>
+            <p><b>ดิถีฤกษ์ไชย :</b> ${dithi}</p>
         </div>
     `;
 

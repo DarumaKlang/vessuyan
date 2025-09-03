@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import SocialButtons from '@/components/SocialButtons';
 import YamaAthaganClock from '@/components/YamaAthaganClock'; // นำเข้า Component นาฬิกายามอัฐกาล
+import CurrentDayCard from '@/components/CurrentDayCard';
 
 export default function Home() {
     return (
@@ -65,8 +66,16 @@ export default function Home() {
                 <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg text-center">
                     บริการของเรา
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                     <YamaAthaganClock />
+                <div className="flex flex-col md:flex-row md:space-x-4 p-4 items-stretch justify-center">
+                    <div className="flex-1">
+                        <YamaAthaganClock />
+                    </div>
+                    <div className="flex-1">
+                        <CurrentDayCard />
+                    </div>
+                    <div className="flex-1">
+                        <CurrentDayCard />
+                    </div>
                 </div>
             </div>
 
