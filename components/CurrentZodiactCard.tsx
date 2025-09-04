@@ -12,11 +12,14 @@ const CurrentZodiactCard: React.FC = () => {
     }
 
     return (
+        
         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 text-white flex flex-col justify-start h-full w-full">
             <h2 className="text-2xl font-bold text-secondary-gold mb-4 text-left">
                 ข้อมูลประจำราศี
             </h2>
+            
             <div className="flex flex-col space-y-2 w-full text-left">
+
                 <p className="text-md font-bold text-secondary-gold">{currentZodiac.name}</p>
                 <p className="text-md font-bold">ช่วงเวลา : <span className="text-md font-light text-secondary-gold">{currentZodiac.start[1]} {DateTime.fromObject({ month: currentZodiac.start[0] }).toFormat('LLL', { locale: 'th' })} - {currentZodiac.end[1]} {DateTime.fromObject({ month: currentZodiac.end[0] }).toFormat('LLL', { locale: 'th' })}</span></p>
                 <p className="text-md font-bold">ธาตุประจำราศี : <span className="text-md font-light text-secondary-gold">{currentZodiac.element}</span></p>

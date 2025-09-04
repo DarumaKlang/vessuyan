@@ -104,7 +104,7 @@ export default function AstrologyPage() {
                     <Link href="/astrology/zodiact" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">จักราศี</h2>
-                            <p className="text-white">คำทำนายเกี่ยวกับ 12 ราศี</p>
+                            <p className="text-white">คำทำนายเกี่ยวกับ ๑๒ ราศี</p>
                         </div>
                     </Link>
 
@@ -113,6 +113,14 @@ export default function AstrologyPage() {
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">กลุ่มดาวฤกษ์ ๒๗</h2>
                             <p className="text-white">คำทำนายดาวฤกษ์ทั้ง ๒๗ กลุ่มดาว</p>
+                        </div>
+                    </Link>
+
+                    {/* Article Card 12: galakini */}
+                    <Link href="/astrology/galakini" className="block">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
+                            <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ทักษา กาลกิณี</h2>
+                            <p className="text-white">คำทำนายดาวทั้ง ๘ ที่ตก กาลกิณี</p>
                         </div>
                     </Link>
                     

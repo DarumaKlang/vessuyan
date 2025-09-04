@@ -27,7 +27,7 @@ export default function Home() {
             <Navbar />
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-100px)] text-center text-white p-8">
+            <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(80vh-80px)] text-center text-white p-8">
                 {/* Site Title and Slogan */}
                 <div className="mb-8 mt-16 md:mt-0">
                     <h1 className="text-4xl md:text-6xl font-bold text-secondary-gold drop-shadow-lg">VESSUYAN</h1>
@@ -67,7 +67,7 @@ export default function Home() {
                 <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg text-center">
                     บริการของเรา
                 </h1>
-                <div className="flex flex-col md:flex-row md:space-x-4 space-y-8 p-4 items-stretch justify-center">
+                <div className="flex flex-col md:flex-row md:space-x-4 p-4 gap-4 items-stretch justify-center">
                     <div className="flex-1">
                         <YamaAthaganClock />
                     </div>
@@ -81,7 +81,7 @@ export default function Home() {
             </div>
 
             {/* Social Buttons Section at the bottom */}
-            <div className="relative z-10 p-8 text-white max-w-7xl mx-auto">
+            <div className="relative z-10 p-10 text-white max-w-7xl mx-auto">
                 <SocialButtons />
             </div>
         </main>
