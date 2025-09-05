@@ -25,10 +25,10 @@ export default function GalakiniPage() {
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center p-8">
-                <h1 className="text-4xl font-bold text-secondary-gold mb-8 drop-shadow-lg">รายละเอียด 27 ฤกษ์</h1>
+                <h1 className="text-4xl font-bold text-secondary-gold drop-shadow-lg">รายละเอียด 27 ฤกษ์</h1>
                 
                 {/* GalakiniCard Component */}
-                <div className="space-y-12">
+                <div className="space-y-8">
                     <GalakiniCard />
                 </div>
 
