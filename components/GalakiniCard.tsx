@@ -49,13 +49,25 @@ const GalakiniCard = () => {
 
                         <div className="space-y-4 text-sm text-gray-200">
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>สำหรับ:</strong> <span className="block mt-1">{selectedLore.day}</span>
+                                <strong>สำหรับ:</strong> <span className="block mt-1">{selectedLore.day} (ตามหลักมหาทักษา)</span>
                             </div>
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
                                 <strong>ผลกระทบ:</strong> <span className="block mt-1">{selectedLore.impact}</span>
                             </div>
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>วิธีแก้ไข:</strong> <span className="block mt-1">{selectedLore.solution}</span>
+                                <strong>คำแนะนำ:</strong> <span className="block mt-1">{selectedLore.solution}</span>
+                            </div>
+
+                            <div className="p-3 bg-white/5 rounded-md shadow-inner">
+                                <strong>ผลกระทบ (ตามหลักทิวาราตรี):</strong> <span className="block mt-1">{selectedLore.tiwaratree}</span>
+                            </div>
+                            <div className="p-3 bg-white/5 rounded-md shadow-inner">
+                                <strong>วิธีแก้ไข (ตามหลักทิวาราตรี):</strong>
+                                <ul className="list-disc list-inside mt-2 space-y-1">
+                                    {selectedLore.guidelines.map((guideline, index) => (
+                                        <li key={index}>{guideline}</li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
