@@ -44,28 +44,21 @@ const GalakiniCard = () => {
 
                 {selectedLore && (
                     <div className="border border-secondary-gold/20 rounded-lg p-6 bg-white/5 transition-all duration-300 transform scale-100">
-                        {/* แสดงผล name, day, impact และ solution จาก GalakiniData */}
+                        {/* แสดงผล name, day, และ combinedImpact จาก GalakiniData */}
                         <h3 className="text-xl font-semibold text-secondary-gold mb-4">{selectedLore.name}</h3>
 
                         <div className="space-y-4 text-sm text-gray-200">
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>สำหรับ:</strong> <span className="block mt-1">{selectedLore.day} (ตามหลักมหาทักษา)</span>
+                                <strong>สำหรับ:</strong> <span className="block mt-1">{selectedLore.day}</span>
                             </div>
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>ผลกระทบ:</strong> <span className="block mt-1">{selectedLore.impact}</span>
+                                <strong>ผลกระทบ:</strong> <span className="block mt-1">{selectedLore.combinedImpact}</span>
                             </div>
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>คำแนะนำ:</strong> <span className="block mt-1">{selectedLore.solution}</span>
-                            </div>
-
-                            <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>ผลกระทบ (ตามหลักทิวาราตรี):</strong> <span className="block mt-1">{selectedLore.tiwaratree}</span>
-                            </div>
-                            <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>วิธีแก้ไข (ตามหลักทิวาราตรี):</strong>
+                                <strong>วิธีแก้ไข:</strong>
                                 <ul className="list-disc list-inside mt-2 space-y-1">
-                                    {selectedLore.guidelines.map((guideline, index) => (
-                                        <li key={index}>{guideline}</li>
+                                    {selectedLore.combinedSolution.map((solution, index) => (
+                                        <li key={index}>{solution}</li>
                                     ))}
                                 </ul>
                             </div>
