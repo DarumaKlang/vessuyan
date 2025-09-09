@@ -55,7 +55,7 @@ const GalakiniCard = () => {
                                 <strong>ผลกระทบ:</strong> <span className="block mt-1">{selectedLore.combinedImpact}</span>
                             </div>
                             <div className="p-3 bg-white/5 rounded-md shadow-inner">
-                                <strong>วิธีแก้ไข:</strong>
+                                <strong>วิธีแก้ไข (กรณีทักษาจร):</strong>
                                 <ul className="list-disc list-inside mt-2 space-y-1">
                                     {selectedLore.combinedSolution.map((solution, index) => (
                                         <li key={index}>{solution}</li>
