@@ -80,10 +80,83 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
     error: "/auth/error",
   },
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      // Only handle OAuth providers (not credentials)
+      if (account?.provider !== 'credentials' && user.email) {
+        try {
+          // Check if user exists
+          const existingUser = await prisma.user.findUnique({
+            where: { email: user.email },
+            include: { subscription: true }
+          })
+
+          if (!existingUser) {
+            // Create new user with subscription
+            const newUser = await prisma.user.create({
+              data: {
+                email: user.email,
+                password: '', // Empty password for OAuth users
+                fullName: user.name || user.email.split('@')[0],
+                avatar: user.image,
+                subscription: {
+                  create: {
+                    tier: 'FREE_MEMBER',
+                    status: 'active',
+                    usageLimit: {
+                      create: {
+                        horoscopeRemainingThisWeek: 2,
+                        questionsRemainingThisWeek: 1,
+                        consultationsRemainingThisWeek: 0,
+                      }
+                    }
+                  }
+                }
+              }
+            })
+            console.log('Created new user via OAuth:', newUser.email)
+          } else if (!existingUser.subscription) {
+            // User exists but no subscription, create one
+            await prisma.subscription.create({
+              data: {
+                userId: existingUser.id,
+                tier: 'FREE_MEMBER',
+                status: 'active',
+                usageLimit: {
+                  create: {
+                    horoscopeRemainingThisWeek: 2,
+                    questionsRemainingThisWeek: 1,
+                    consultationsRemainingThisWeek: 0,
+                  }
+                }
+              }
+            })
+            console.log('Created subscription for existing user:', existingUser.email)
+          }
+        } catch (error) {
+          console.error('Error in signIn event:', error)
+        }
+      }
+    }
+  },
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account, profile }) {
+      // Allow all sign-ins
+      return true
+    },
+    async jwt({ token, user, account }) {
       if (user) {
-        token.id = user.id
+        // For OAuth, fetch the user from database to get the correct ID
+        if (account?.provider !== 'credentials' && user.email) {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: user.email }
+          })
+          if (dbUser) {
+            token.id = dbUser.id
+          }
+        } else {
+          token.id = user.id
+        }
       }
       return token
     },
