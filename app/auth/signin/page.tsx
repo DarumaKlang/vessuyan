@@ -83,7 +83,7 @@ function SignInContent() {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-purple via-secondary-gold to-primary-purple bg-clip-text text-transparent mb-2">
               เข้าสู่ระบบ
             </h1>
-            <p className="text-gray-300 text-sm">ยินดีต้อนรับกลับมา Vessuyan</p>
+            <p className="text-gray-300 text-sm">เข้าสู่ระบบเพื่อรับสิทธิ์ดูดวงฟรี 2 ครั้ง/สัปดาห์</p>
           </div>
 
           {/* Success message */}

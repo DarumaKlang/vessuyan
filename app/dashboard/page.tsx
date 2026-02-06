@@ -43,7 +43,7 @@ export default function DashboardPage() {
     try {
       setLoading(true)
       const response = await fetch('/api/user/dashboard')
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch dashboard data')
       }
@@ -84,7 +84,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-purple-900">
       <Navbar />
-      
+
       <div className="pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-4">
           {/* Header Section */}
@@ -129,11 +129,20 @@ export default function DashboardPage() {
                   <p className="text-purple-200 mb-4">
                     สมัครสมาชิก: {new Date(dashboardData.createdAt).toLocaleDateString('th-TH')}
                   </p>
-                  <Link href="/dashboard/profile">
-                    <button className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
-                      แก้ไขโปรไฟล์
-                    </button>
-                  </Link>
+                  <div className="flex flex-col gap-4">
+                    <Link href="/dashboard/profile" className="block w-full">
+                      <button className="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-semibold">
+                        แก้ไขโปรไฟล์
+                      </button>
+                    </Link>
+                    {session.user?.email === 'admin@vessuyan.com' && (
+                      <Link href="/admin/users" className="block w-full">
+                        <button className="w-full px-4 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors font-bold shadow-lg shadow-pink-500/20">
+                          ⚙️ จัดการผู้ใช้ (Admin)
+                        </button>
+                      </Link>
+                    )}
+                  </div>
                 </>
               ) : (
                 <p className="text-purple-300">กำลังโหลด...</p>

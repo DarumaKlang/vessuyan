@@ -14,10 +14,9 @@ export default function Navbar() {
             <nav className="w-full px-4 sm:px-6 py-4">
                 {/* Mobile & Desktop Container */}
                 <div className="flex items-center justify-between">
-                    {/* Logo - Mobile First */}
-                    <Link 
-                        href="/" 
-                        className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary-accent via-secondary-gold to-accent-cyan bg-clip-text text-transparent hover:scale-105 transition-transform"
+                    <Link
+                        href="/"
+                        className="text-xl sm:text-2xl font-bold gradient-text hover:scale-105 transition-transform"
                     >
                         ✨ Vessuyan
                     </Link>

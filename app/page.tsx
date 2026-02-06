@@ -33,11 +33,25 @@ export default function Home() {
                     <div className="h-1 w-24 mx-auto bg-gradient-to-r from-neon-violet via-accent-cyan to-secondary-gold rounded-full opacity-60"></div>
                 </div>
 
+                {/* Call To Action for New Users */}
+                <div className="mb-12 glass-md p-6 rounded-2xl border border-white/10 max-w-2xl animate-fade-in">
+                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">🎁 ของขวัญพิเศษสำหรับสมาชิกใหม่</h3>
+                    <p className="text-purple-200 mb-6">เข้าสู่ระบบตอนนี้ รับสิทธิ์ดูดวงฟรี 2 ครั้ง และปรึกษาผู้เชี่ยวชาญทันที!</p>
+                    <Link href="/auth/signin">
+                        <button className="px-8 py-3 bg-gradient-to-r from-neon-violet to-accent-cyan text-white font-bold rounded-full shadow-lg hover:shadow-glow-purple transition-all transform hover:scale-105">
+                            เข้าสู่ระบบด้วย LINE / Google เพื่อรับสิทธิ์
+                        </button>
+                    </Link>
+                </div>
+
                 {/* Section for Services */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl px-4 md:px-0 mt-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl px-4 md:px-0 mt-8">
                     {/* Card 1: ดูดวงรายวัน */}
                     <Link href="/horoscopes/daily" passHref>
-                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-purple hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group">
+                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-purple hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group relative overflow-hidden">
+                            <div className="absolute top-2 right-2 z-20">
+                                <span className="bg-neon-violet/80 text-[10px] text-white px-2 py-0.5 rounded-full uppercase tracking-tighter">Login to Unlock</span>
+                            </div>
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-r from-neon-violet to-accent-cyan opacity-0 group-hover:opacity-10 rounded-lg transition-opacity"></div>
                                 <h2 className="text-2xl font-bold text-secondary-gold mb-3 drop-shadow group-hover:text-neon-violet transition-colors">✨ ดูดวงรายวัน</h2>
@@ -48,7 +62,10 @@ export default function Home() {
 
                     {/* Card 2: ไพ่ยิปซี */}
                     <Link href="/horoscopes/tarot" passHref>
-                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-magenta hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group">
+                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-magenta hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group relative overflow-hidden">
+                            <div className="absolute top-2 right-2 z-20">
+                                <span className="bg-green-500/80 text-[10px] text-white px-2 py-0.5 rounded-full uppercase tracking-tighter shadow-glow-cyan animate-pulse">ดูฟรี</span>
+                            </div>
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-r from-accent-magenta to-secondary-gold opacity-0 group-hover:opacity-10 rounded-lg transition-opacity"></div>
                                 <h2 className="text-2xl font-bold text-secondary-gold mb-3 drop-shadow group-hover:text-accent-magenta transition-colors">🔮 ไพ่ยิปซี</h2>
@@ -59,59 +76,17 @@ export default function Home() {
 
                     {/* Card 3: ศาสตร์ตัวเลข */}
                     <Link href="/horoscopes/numerology" passHref>
-                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-cyan hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group">
+                        <div className="glass-effect p-6 rounded-xl cursor-pointer hover:shadow-glow-cyan hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-accent-magenta/20 group relative overflow-hidden">
+                            <div className="absolute top-2 right-2 z-20">
+                                <span className="bg-green-500/80 text-[10px] text-white px-2 py-0.5 rounded-full uppercase tracking-tighter shadow-glow-cyan animate-pulse">ดูฟรี</span>
+                            </div>
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-r from-accent-cyan to-neon-violet opacity-0 group-hover:opacity-10 rounded-lg transition-opacity"></div>
-                                <h2 className="text-2xl font-bold text-secondary-gold mb-3 drop-shadow group-hover:text-accent-cyan transition-colors">🔢 ศาสตร์ตัวเลข</h2>
+                                <h2 className="text-2xl font-bold text-secondary-gold mb-3 drop-shadow group-hover:text-accent-cyan transition-colors">🔢 ดูดวงฟรี</h2>
                                 <p className="text-text-muted group-hover:text-text-light transition-colors">ความหมายของตัวเลขที่คุณไม่เคยรู้</p>
                             </div>
                         </div>
                     </Link>
-                </div>
-            </div>
-
-            {/* Card Component YamaAthaganClock */}
-            <div className="relative z-10 p-8 text-white max-w-7xl mx-auto">
-                <h2 className="text-4xl font-bold gradient-text mb-8 drop-shadow-lg text-center">
-                    บริการของเรา
-                </h2>
-                <div className="flex flex-col md:flex-row md:space-x-4 p-4 gap-4 items-stretch justify-center">
-                    <div className="flex-1">
-                        <YamaAthaganClock />
-                    </div>
-                    <div className="flex-1">
-                        <CurrentDayCard />
-                    </div>
-                    <div className="flex-1">
-                        <CurrentZodiactCard />
-                    </div>
-                </div>
-
-                {/* Glassmorphism Demo Section */}
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {/* Glass SM */}
-                    <div className="glass-sm p-4 rounded-lg text-center">
-                        <h3 className="text-sm font-bold text-accent-cyan mb-2">Glass SM</h3>
-                        <p className="text-xs text-text-muted">Blur: 4px</p>
-                    </div>
-
-                    {/* Glass MD */}
-                    <div className="glass-md p-4 rounded-lg text-center">
-                        <h3 className="text-sm font-bold text-secondary-gold mb-2">Glass MD</h3>
-                        <p className="text-xs text-text-muted">Blur: 10px</p>
-                    </div>
-
-                    {/* Glass LG */}
-                    <div className="glass-lg p-4 rounded-lg text-center">
-                        <h3 className="text-sm font-bold text-neon-violet mb-2">Glass LG</h3>
-                        <p className="text-xs text-text-muted">Blur: 16px</p>
-                    </div>
-
-                    {/* Glass Glow */}
-                    <div className="glass-glow-purple p-4 rounded-lg text-center">
-                        <h3 className="text-sm font-bold text-neon-violet mb-2">Glass Glow</h3>
-                        <p className="text-xs text-text-muted">With neon border</p>
-                    </div>
                 </div>
             </div>
 

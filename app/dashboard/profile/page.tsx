@@ -49,7 +49,7 @@ export default function ProfilePage() {
     try {
       setLoading(true)
       const response = await fetch('/api/user/profile')
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch profile')
       }
@@ -83,7 +83,7 @@ export default function ProfilePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     try {
       setSubmitting(true)
       setError(null)
@@ -132,7 +132,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-purple-900">
       <Navbar />
-      
+
       <div className="pt-20 pb-10">
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
@@ -196,18 +196,71 @@ export default function ProfilePage() {
                 />
               </div>
 
-              {/* Birth Time */}
+              {/* Birth Time Selector (Custom for better UX) */}
               <div className="glass-effect rounded-lg p-6">
                 <label className="block text-white font-semibold mb-3">
-                  เวลาเกิด (HH:MM)
+                  เวลาเกิด
                 </label>
-                <input
-                  type="time"
-                  name="birthTime"
-                  value={formData.birthTime}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-purple-900/50 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-                />
+                <div className="flex items-center gap-2">
+                  <select
+                    value={(() => {
+                      if (!formData.birthTime) return '12';
+                      const [h24] = formData.birthTime.split(':');
+                      let h12 = parseInt(h24) % 12;
+                      if (h12 === 0) h12 = 12;
+                      return h12.toString().padStart(2, '0');
+                    })()}
+                    onChange={(e) => {
+                      const mins = formData.birthTime ? formData.birthTime.split(':')[1] || '00' : '00';
+                      const isPM = formData.birthTime?.includes('PM') || parseInt(formData.birthTime?.split(':')[0] || '0') >= 12;
+                      let h24 = parseInt(e.target.value);
+                      if (isPM && h24 !== 12) h24 += 12;
+                      if (!isPM && h24 === 12) h24 = 0;
+                      setFormData(prev => ({ ...prev, birthTime: `${h24.toString().padStart(2, '0')}:${mins}` }));
+                    }}
+                    className="flex-1 px-2 py-3 bg-purple-900/50 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  >
+                    {Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0')).map(h => (
+                      <option key={h} value={h} className="bg-purple-900 text-white">{h}</option>
+                    ))}
+                  </select>
+                  <span className="text-white">:</span>
+                  <select
+                    value={formData.birthTime ? formData.birthTime.split(':')[1] || '00' : '00'}
+                    onChange={(e) => {
+                      const h24 = formData.birthTime ? formData.birthTime.split(':')[0] || '12' : '12';
+                      setFormData(prev => ({ ...prev, birthTime: `${h24}:${e.target.value}` }));
+                    }}
+                    className="flex-1 px-2 py-3 bg-purple-900/50 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  >
+                    {Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, '0')).map(m => (
+                      <option key={m} value={m} className="bg-purple-900 text-white">{m}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={(() => {
+                      if (!formData.birthTime) return 'AM';
+                      const [h24] = formData.birthTime.split(':');
+                      return parseInt(h24) >= 12 ? 'PM' : 'AM';
+                    })()}
+                    className="px-2 py-3 bg-purple-900/50 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    onChange={(e) => {
+                      const [h24_old, mins] = (formData.birthTime || '12:00').split(':');
+                      let h12 = parseInt(h24_old) % 12;
+                      if (h12 === 0) h12 = 12; // 00 -> 12, 12 -> 12
+
+                      let h24_new = h12;
+                      if (e.target.value === 'PM' && h12 !== 12) h24_new += 12;
+                      if (e.target.value === 'AM' && h12 === 12) h24_new = 0;
+
+                      setFormData(prev => ({ ...prev, birthTime: `${h24_new.toString().padStart(2, '0')}:${mins}` }));
+                    }}
+                  >
+                    <option value="AM" className="bg-purple-900 text-white">AM</option>
+                    <option value="PM" className="bg-purple-900 text-white">PM</option>
+                  </select>
+                </div>
+                <p className="text-[10px] text-purple-300 mt-2">ลำดับเลขชั่วโมงเริ่มที่ 01 ถึง 12 ตามคำขอ</p>
               </div>
 
               {/* Birth City */}

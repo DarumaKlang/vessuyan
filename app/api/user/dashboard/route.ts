@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth'
-import { prisma } from '@/lib/prisma'
+import { createClient } from '@/utils/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
@@ -13,35 +13,40 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Fetch user with subscription and usage limits
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-      include: {
-        subscription: {
-          include: {
-            usageLimit: true,
-          },
-        },
-      },
-    })
+    const supabase = await createClient()
 
-    if (!user) {
+    // Fetch user with subscription and usage limits using Supabase Client
+    const { data: user, error: userError } = await supabase
+      .from('User')
+      .select(`
+        *,
+        subscription:Subscription (
+          *,
+          usageLimit:UsageLimit (*)
+        )
+      `)
+      .eq('email', session.user.email)
+      .single()
+
+    if (userError || !user) {
+      console.error('Error fetching user from Supabase:', userError)
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
       )
     }
 
+    // Adapt to the response format expected by the frontend
     return NextResponse.json({
       fullName: user.fullName,
       email: user.email,
-      subscriptionTier: user.subscription?.tier || 'NON_MEMBER',
-      horoscopeViewsUsed: 0, // Placeholder - would need to query HoroscopeView model
-      horoscopeViewsLimit: user.subscription?.usageLimit?.horoscopeRemainingThisWeek || 2,
-      questionsUsed: 0, // Placeholder - would need to query Question model
-      questionsLimit: user.subscription?.usageLimit?.questionsRemainingThisWeek || 1,
-      consultationsUsed: 0, // Placeholder - would need to query Consultation model
-      consultationsLimit: user.subscription?.usageLimit?.consultationsRemainingThisWeek || 0,
+      subscriptionTier: user.subscription?.[0]?.tier || 'NON_MEMBER',
+      horoscopeViewsUsed: 0,
+      horoscopeViewsLimit: user.subscription?.[0]?.usageLimit?.[0]?.horoscopeRemainingThisWeek || 2,
+      questionsUsed: 0,
+      questionsLimit: user.subscription?.[0]?.usageLimit?.[0]?.questionsRemainingThisWeek || 1,
+      consultationsUsed: 0,
+      consultationsLimit: user.subscription?.[0]?.usageLimit?.[0]?.consultationsRemainingThisWeek || 0,
       createdAt: user.createdAt,
     })
   } catch (error) {

@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import LineProvider from "next-auth/providers/line"
 import bcrypt from "bcryptjs"
-import { prisma } from "@/lib/prisma"
+import { createClient } from "@/utils/supabase/server"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -18,17 +18,16 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials")
         }
 
-        // Find user in database
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-          include: {
-            subscription: {
-              include: { usageLimit: true }
-            }
-          }
-        })
+        const supabase = await createClient()
 
-        if (!user) {
+        // Find user in database using Supabase Client
+        const { data: user } = await supabase
+          .from('User')
+          .select('*, subscription:Subscription(*)')
+          .eq('email', credentials.email)
+          .single()
+
+        if (!user || !user.password) {
           throw new Error("Invalid email or password")
         }
 
@@ -82,56 +81,77 @@ export const authOptions: NextAuthOptions = {
   },
   events: {
     async signIn({ user, account, profile, isNewUser }) {
-      // Only handle OAuth providers (not credentials)
       if (account?.provider !== 'credentials' && user.email) {
         try {
+          const supabase = await createClient()
+
           // Check if user exists
-          const existingUser = await prisma.user.findUnique({
-            where: { email: user.email },
-            include: { subscription: true }
-          })
+          const { data: existingUser } = await supabase
+            .from('User')
+            .select('*, subscription:Subscription(*)')
+            .eq('email', user.email)
+            .single()
 
           if (!existingUser) {
-            // Create new user with subscription
-            const newUser = await prisma.user.create({
-              data: {
+            // Create new user
+            const { data: newUser, error: createError } = await supabase
+              .from('User')
+              .insert({
                 email: user.email,
-                password: '', // Empty password for OAuth users
+                password: '',
                 fullName: user.name || user.email.split('@')[0],
                 avatar: user.image,
-                subscription: {
-                  create: {
-                    tier: 'FREE_MEMBER',
-                    status: 'active',
-                    usageLimit: {
-                      create: {
-                        horoscopeRemainingThisWeek: 2,
-                        questionsRemainingThisWeek: 1,
-                        consultationsRemainingThisWeek: 0,
-                      }
-                    }
-                  }
-                }
-              }
-            })
-            console.log('Created new user via OAuth:', newUser.email)
-          } else if (!existingUser.subscription) {
-            // User exists but no subscription, create one
-            await prisma.subscription.create({
-              data: {
-                userId: existingUser.id,
-                tier: 'FREE_MEMBER',
-                status: 'active',
-                usageLimit: {
-                  create: {
+              })
+              .select()
+              .single()
+
+            if (newUser) {
+              // Create subscription
+              const { data: sub } = await supabase
+                .from('Subscription')
+                .insert({
+                  userId: newUser.id,
+                  tier: 'FREE_MEMBER',
+                  status: 'active',
+                })
+                .select()
+                .single()
+
+              if (sub) {
+                // Create usage limit
+                await supabase
+                  .from('UsageLimit')
+                  .insert({
+                    subscriptionId: sub.id,
                     horoscopeRemainingThisWeek: 2,
                     questionsRemainingThisWeek: 1,
                     consultationsRemainingThisWeek: 0,
-                  }
-                }
+                  })
               }
-            })
-            console.log('Created subscription for existing user:', existingUser.email)
+              console.log('Created new user via OAuth:', newUser.email)
+            }
+          } else if (!existingUser.subscription || existingUser.subscription.length === 0) {
+            // Create subscription if missing
+            const { data: sub } = await supabase
+              .from('Subscription')
+              .insert({
+                userId: existingUser.id,
+                tier: 'FREE_MEMBER',
+                status: 'active',
+              })
+              .select()
+              .single()
+
+            if (sub) {
+              await supabase
+                .from('UsageLimit')
+                .insert({
+                  subscriptionId: sub.id,
+                  horoscopeRemainingThisWeek: 2,
+                  questionsRemainingThisWeek: 1,
+                  consultationsRemainingThisWeek: 0,
+                })
+            }
           }
         } catch (error) {
           console.error('Error in signIn event:', error)
@@ -141,16 +161,18 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      // Allow all sign-ins
       return true
     },
     async jwt({ token, user, account }) {
       if (user) {
-        // For OAuth, fetch the user from database to get the correct ID
         if (account?.provider !== 'credentials' && user.email) {
-          const dbUser = await prisma.user.findUnique({
-            where: { email: user.email }
-          })
+          const supabase = await createClient()
+          const { data: dbUser } = await supabase
+            .from('User')
+            .select('id')
+            .eq('email', user.email)
+            .single()
+
           if (dbUser) {
             token.id = dbUser.id
           }
