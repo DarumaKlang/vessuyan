@@ -1,0 +1,336 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ===== AUTHENTICATION MODELS =====
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String
+  fullName  String?
+  avatar    String?
+  birthDate DateTime?
+  birthTime String? // เวลาเกิด HH:MM (เขตเวลา Asia/Bangkok)
+  birthCity String?
+
+  profile           UserProfile?
+  subscription      Subscription?
+  horoscopeViews    HoroscopeView[]
+  questions         Question[]
+  consultations     Consultation[]
+  payments          Payment[]
+  consultantReviews ConsultantReview[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+model UserProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  zodiacSign       String? // เช่น ชวด, ฉลู, ขาล (Thai zodiac)
+  numerologyNumber Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ===== SUBSCRIPTION MODELS =====
+
+enum MembershipTier {
+  NON_MEMBER // ไม่ได้สมัครสมาชิก: 1x/week
+  FREE_MEMBER // สมาชิกฟรี: 2x/week + 1Q
+  PREMIUM // พรีเมี่ยม: 2x/week + 1Q + consulting
+}
+
+model Subscription {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tier      MembershipTier @default(FREE_MEMBER)
+  status    String         @default("active") // active, cancelled, expired
+  startDate DateTime       @default(now())
+  endDate   DateTime? // null = indefinite
+  autoRenew Boolean        @default(true)
+
+  usageLimit UsageLimit?
+  payments   Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([tier])
+  @@index([status])
+}
+
+model UsageLimit {
+  id             String       @id @default(cuid())
+  subscriptionId String       @unique
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Weekly limits reset every Monday
+  horoscopeRemainingThisWeek     Int @default(2)
+  questionsRemainingThisWeek     Int @default(1)
+  consultationsRemainingThisWeek Int @default(0)
+
+  lastResetDate DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+// ===== HOROSCOPE MODELS =====
+
+enum HoroscopeType {
+  DAILY // ดวงรายวัน
+  WEEKLY // ดวงประจำสัปดาห์
+  MONTHLY // ดวงรายเดือน
+  YEARLY // ดวงประจำปี
+}
+
+model HoroscopeView {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type       HoroscopeType
+  date       DateTime // วันที่ดูดวง
+  zodiacSign String? // zodiac ที่ดูดวงสำหรับ
+  prediction String? // ข้อความทำนาย
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([date])
+  @@index([type])
+}
+
+// ===== CONSULTATION MODELS =====
+
+enum ConsultationType {
+  LIFE_GUIDANCE // การปรึกษาชีวิต
+  LOVE_RELATIONSHIP // ความสัมพันธ์
+  CAREER_PATH // อาชีพและการงาน
+  FINANCE // การเงิน
+  HEALTH_WELLNESS // สุขภาพ
+  SPIRITUAL // ด้านจิตใจ
+}
+
+enum ConsultationStatus {
+  PENDING // รอการยืนยัน
+  CONFIRMED // ยืนยันแล้ว
+  COMPLETED // เสร็จสิ้น
+  CANCELLED // ยกเลิก
+  NO_SHOW // ไม่มา
+}
+
+model Consultant {
+  id        String  @id @default(cuid())
+  name      String
+  email     String  @unique
+  phone     String
+  specialty String // เช่น นักโหราศาสตร์, หมอแผนไทย, ผู้ทำนาย
+  bio       String?
+  avatar    String?
+
+  qualifications String? // คุณวุฒิและประสบการณ์
+  ratePerHour    Int // ราคา/ชั่วโมง
+  availability   String // JSON: {mon: "09:00-17:00", tue: ...}
+  rating         Float   @default(0)
+  reviewCount    Int     @default(0)
+
+  consultations Consultation[]
+  reviews       ConsultantReview[]
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([specialty])
+  @@index([isActive])
+}
+
+model Consultation {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  consultantId String
+  consultant   Consultant @relation(fields: [consultantId], references: [id])
+
+  type   ConsultationType
+  status ConsultationStatus @default(PENDING)
+
+  scheduledDate   DateTime
+  durationMinutes Int      @default(60)
+  notes           String?
+  recordingUrl    String? // บันทึกวิดีโอ (ถ้ามี)
+
+  payment Payment?
+  reviews ConsultantReview[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([consultantId])
+  @@index([status])
+  @@index([scheduledDate])
+}
+
+model ConsultantReview {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  consultationId String?
+  consultation   Consultation? @relation(fields: [consultationId], references: [id], onDelete: Cascade)
+
+  consultantId String
+  consultant   Consultant @relation(fields: [consultantId], references: [id], onDelete: Cascade)
+
+  rating  Int // 1-5
+  comment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([consultantId])
+  @@index([rating])
+}
+
+// ===== QUESTION MODELS =====
+
+model Question {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title    String
+  content  String
+  category String? // หมวดหมู่คำถาม
+
+  answer     String?
+  answeredBy String? // Consultant name หรือ Admin
+  answeredAt DateTime?
+
+  status String @default("pending") // pending, answered, archived
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ===== PAYMENT MODELS =====
+
+enum PaymentStatus {
+  PENDING // รอการชำระเงิน
+  COMPLETED // ชำระแล้ว
+  FAILED // ล้มเหลว
+  REFUNDED // คืนเงิน
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  PAYPAL
+  PROMPT_PAY // PromptPay (QR Code)
+}
+
+model Payment {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  subscriptionId String?
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  consultationId String?       @unique
+  consultation   Consultation? @relation(fields: [consultationId], references: [id], onDelete: SetNull)
+
+  amount   Float
+  currency String        @default("THB")
+  status   PaymentStatus @default(PENDING)
+  method   PaymentMethod
+
+  transactionId String? @unique
+  receiptUrl    String?
+
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([transactionId])
+}
+
+// ===== CONTENT MODELS =====
+
+model Article {
+  id       String  @id @default(cuid())
+  title    String
+  slug     String  @unique
+  content  String
+  category String // เช่น astrology, numerology, buddha
+  author   String?
+
+  published Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([published])
+  @@index([slug])
+}
+
+// ===== SETTINGS & ADMIN MODELS =====
+
+model SiteSettings {
+  id String @id @default("main")
+
+  siteName        String  @default("Vessuyan")
+  maintenanceMode Boolean @default(false)
+
+  premiumMonthlyPrice Int @default(299) // THB
+  premiumAnnualPrice  Int @default(2999)
+
+  supportEmail String?
+
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id      String  @id @default(cuid())
+  action  String // เช่น "user.signup", "payment.completed", "consultation.booked"
+  userId  String? // null สำหรับ system actions
+  details String? // JSON field
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}

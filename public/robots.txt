@@ -1,0 +1,16 @@
+# Allow all bots to crawl the website
+User-agent: *
+Allow: /
+
+# Google-specific rules for better indexing
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Disallow crawling of unnecessary paths
+Disallow: /api
+Disallow: /_next
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://vessuyan.com/sitemap.xml

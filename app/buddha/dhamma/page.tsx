@@ -29,7 +29,7 @@ export default function DhammaPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Article Card 1 */}
-                    <Link href="dhamma/meritorious-actions" className="block">
+                    <Link href="/buddha/dhamma/meritorious-actions" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">บุญกิริยาวัตถุ ๑๐</h2>
                             <p className="text-white">สิ่งอันเป็นที่ตั้งแห่งการทำบุญ 10 ประการ</p>
@@ -37,7 +37,7 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 2 */}
-                    <Link href="dhamma/threefold-training" className="block">
+                    <Link href="/buddha/dhamma/threefold-training" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธรรมในหมวด ๓ ไตรสิกขา</h2>
                             <p className="text-white">ไตรสิกขา หลักการการฝึกฝนเพื่อพัฒนาตนเอง</p>
@@ -45,7 +45,7 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 3 */}
-                    <Link href="dhamma/nyan" className="block">
+                    <Link href="/buddha/dhamma/nyan" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ญาณ ๑๖</h2>
                             <p className="text-white">ลำดับการปฏิบัติทางปัญญาในแนวทางของวิปัสสนากรรมฐาน</p>
@@ -53,7 +53,7 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 4 */}
-                    <Link href="dhamma/ariyamagga" className="block">
+                    <Link href="/buddha/dhamma/ariyamagga" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">อริยบุคคล ๔</h2>
                             <p className="text-white">เส้นทางสู่การบรรลุธรรม</p>
@@ -61,7 +61,7 @@ export default function DhammaPage() {
                     </Link>
 
                     {/* Article Card 5 */}
-                    <Link href="dhamma/dhammadesana-related" className="block">
+                    <Link href="/buddha/dhamma/dhammadesana-related" className="block">
                         <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-secondary-gold/30 hover:bg-white/20 transition-colors">
                             <h2 className="text-2xl font-bold text-secondary-gold mb-2 drop-shadow">ธัมมเทสนาปฏิสังยุตต์ ๑๖</h2>
                             <p className="text-white">มารยาทของภิกษุเกี่ยวกับการแสดงธรรม 16 ข้อ</p>

@@ -1,12 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-    --background: #0d0615;
-    --foreground: #ffffff;
+    /* Modern Cosmic Theme */
+    --background: #0f0a1c;
+    --foreground: #f5f3ff;
+    --primary-dark: #1a0f2e;
+    --primary-accent: #6d28d9;
+    --accent-cyan: #06b6d4;
+    --accent-magenta: #ec4899;
+}
+
+* {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-    font-family: 'Charm', cursive;
-    background-color: var(--background);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0a1c 0%, #1a0f2e 25%, #2d1b4e 50%, #1a0f2e 75%, #0f0a1c 100%);
+    background-attachment: fixed;
     color: var(--foreground);
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+/* Animated background stars */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eac4d5, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 10px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: float 20s ease infinite;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+html, body, #__next {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography scales - mobile-first */
+h1 {
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: clamp(1.25rem, 4vw, 2.5rem);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+h3 {
+    font-size: clamp(1.1rem, 3vw, 1.875rem);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+h4, h5, h6 {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Mobile-first responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobile-first utility classes */
+.container-mobile {
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .container-mobile {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-mobile {
+        padding: 0 2rem;
+        max-width: 1280px;
+    }
+}
+
+/* Touch-friendly targets (mobile) */
+button, a, input, select, textarea {
+    min-height: 44px;
+}
+
+/* Remove input zoom on iOS */
+input {
+    font-size: 16px;
+}
+
+/* Modern glass effect */
+.glass-effect {
+    background: rgba(26, 15, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(109, 40, 217, 0.2);
+}
+
+/* Glassmorphism Variants */
+.glass-sm {
+    background: rgba(26, 15, 46, 0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(109, 40, 217, 0.15);
+}
+
+.glass-md {
+    background: rgba(26, 15, 46, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(109, 40, 217, 0.25);
+}
+
+.glass-lg {
+    background: rgba(26, 15, 46, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(109, 40, 217, 0.3);
+}
+
+/* Glassmorphism with neon glow */
+.glass-glow-purple {
+    background: rgba(26, 15, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(182, 36, 255, 0.3);
+    box-shadow: 0 0 20px rgba(182, 36, 255, 0.15), inset 0 0 20px rgba(182, 36, 255, 0.05);
+}
+
+.glass-glow-cyan {
+    background: rgba(26, 15, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+.glass-glow-magenta {
+    background: rgba(26, 15, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(236, 72, 153, 0.3);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.15), inset 0 0 20px rgba(236, 72, 153, 0.05);
+}
+
+/* Glassmorphism hover states */
+.glass-effect:hover {
+    background: rgba(26, 15, 46, 0.85);
+    border-color: rgba(109, 40, 217, 0.4);
+    box-shadow: 0 0 30px rgba(182, 36, 255, 0.2);
+}
+
+/* Glow effects */
+.glow-purple {
+    text-shadow: 0 0 10px rgba(182, 36, 255, 0.5);
+    box-shadow: 0 0 20px rgba(182, 36, 255, 0.3);
+}
+
+.glow-cyan {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.glow-magenta {
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+/* Smooth transitions */
+a, button, .interactive {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #b624ff, #06b6d4, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Neon border */
+.neon-border {
+    border: 1px solid;
+    border-image: linear-gradient(135deg, #b624ff, #06b6d4) 1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+@keyframes pulse-delayed {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.animate-pulse-delayed {
+    animation: pulse-delayed 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation-delay: 1s;
 }
