@@ -141,12 +141,12 @@ export default function PricingPage() {
                                         >
                                             💳 บัตร / Stripe
                                         </button>
-                                        <button
+                                        {/* <button
                                             onClick={() => handleUpgrade(tier.id, 'crypto')}
                                             className="py-3 px-4 rounded-2xl font-bold text-[10px] bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 hover:text-white border border-purple-500/10 transition-all"
                                         >
                                             🪙 Crypto (Solana/BTC)
-                                        </button>
+                                        </button> */}
                                     </div>
                                 )}
                             </div>

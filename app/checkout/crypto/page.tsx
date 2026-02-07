@@ -15,7 +15,7 @@ export default function CryptoCheckoutPage() {
     const searchParams = useSearchParams()
     const tier = searchParams.get('tier') || 'PREMIUM'
 
-    const [method, setMethod] = useState<PaymentMethod>('lightning')
+    const [method, setMethod] = useState<PaymentMethod>('solana')
     const [loading, setLoading] = useState(false)
     const [invoice, setInvoice] = useState<string | null>(null)
     const [paymentHash, setPaymentHash] = useState<string | null>(null)
@@ -86,8 +86,9 @@ export default function CryptoCheckoutPage() {
     }, [paymentHash, method, paid, router])
 
     useEffect(() => {
-        if (method === 'lightning') initLightning()
-        else initSolana()
+        // if (method === 'lightning') initLightning()
+        // else initSolana()
+        if (method === 'solana') initSolana()
     }, [method])
 
     if (paid) {
@@ -117,12 +118,12 @@ export default function CryptoCheckoutPage() {
                 </div>
 
                 <div className="flex justify-center gap-4 mb-12">
-                    <button
+                    {/* <button
                         onClick={() => setMethod('lightning')}
                         className={`px-8 py-3 rounded-full font-bold transition-all ${method === 'lightning' ? 'bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.4)]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
                     >
                         ⚡️ Lightning (Sats)
-                    </button>
+                    </button> */}
                     <button
                         onClick={() => setMethod('solana')}
                         className={`px-8 py-3 rounded-full font-bold transition-all ${method === 'solana' ? 'bg-purple-600 text-white shadow-[0_0_20px_rgba(147,51,234,0.4)]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
