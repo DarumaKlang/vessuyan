@@ -322,6 +322,34 @@ Located in `prisma/schema.prisma`:
 
 ---
 
+## 🔮 Abdul AI - หมอดู AI
+
+### Overview
+**อับดุล** เป็น AI chatbot ที่ใช้ Google Gemini สำหรับดูดวงและให้คำปรึกษาโหราศาสตร์ไทย
+
+### Key Files
+| File | Purpose |
+|------|---------|
+| `lib/abdul-prompt.ts` | System Prompt และ Config |
+| `app/api/abdul/route.ts` | API Route สำหรับ Gemini |
+| `components/AbdulChatCard.tsx` | Chat UI Component |
+| `docs/ABDUL_AI_CONFIG.md` | เอกสารละเอียด |
+
+### สิทธิ์การใช้งาน
+- **PREMIUM** และ **ADMIN** เท่านั้นที่เข้าถึงได้
+- FREE_MEMBER และ NON_MEMBER จะเห็นหน้า upgrade
+
+### Environment Variable
+```
+GEMINI_API_KEY="AIzaSy..."
+```
+
+### ขอบเขตการดูดวง
+✅ ความรัก, การงาน, การเงิน, สุขภาพ, วันมงคล  
+❌ เลขหวย, คำแนะนำการแพทย์, การเมือง
+
+---
+
 ## Architecture Layers Summary
 
 ```

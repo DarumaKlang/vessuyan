@@ -36,17 +36,21 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Handle both object and array formats from Supabase relation joins
+    const sub = Array.isArray(user.subscription) ? user.subscription[0] : (user.subscription || null)
+    const usage = sub && Array.isArray(sub.usageLimit) ? sub.usageLimit[0] : (sub?.usageLimit || null)
+
     // Adapt to the response format expected by the frontend
     return NextResponse.json({
       fullName: user.fullName,
       email: user.email,
-      subscriptionTier: user.subscription?.[0]?.tier || 'NON_MEMBER',
+      subscriptionTier: sub?.tier || 'NON_MEMBER',
       horoscopeViewsUsed: 0,
-      horoscopeViewsLimit: user.subscription?.[0]?.usageLimit?.[0]?.horoscopeRemainingThisWeek || 2,
+      horoscopeViewsLimit: usage?.horoscopeRemainingThisWeek || 2,
       questionsUsed: 0,
-      questionsLimit: user.subscription?.[0]?.usageLimit?.[0]?.questionsRemainingThisWeek || 1,
+      questionsLimit: usage?.questionsRemainingThisWeek || 1,
       consultationsUsed: 0,
-      consultationsLimit: user.subscription?.[0]?.usageLimit?.[0]?.consultationsRemainingThisWeek || 0,
+      consultationsLimit: usage?.consultationsRemainingThisWeek || 0,
       createdAt: user.createdAt,
     })
   } catch (error) {

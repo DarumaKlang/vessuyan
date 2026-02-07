@@ -135,6 +135,13 @@ export default function DashboardPage() {
                         แก้ไขโปรไฟล์
                       </button>
                     </Link>
+                    {dashboardData.subscriptionTier !== 'PREMIUM' && (
+                      <Link href="/pricing" className="block w-full">
+                        <button className="w-full px-4 py-3 bg-gradient-to-r from-yellow-600 to-yellow-400 text-primary-purple rounded-lg transition-all font-bold shadow-lg shadow-yellow-500/20 hover:scale-[1.02]">
+                          ⭐ อัปเกรดเป็นพรีเมียม
+                        </button>
+                      </Link>
+                    )}
                     {session.user?.email === 'admin@vessuyan.com' && (
                       <Link href="/admin/users" className="block w-full">
                         <button className="w-full px-4 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors font-bold shadow-lg shadow-pink-500/20">
@@ -243,6 +250,16 @@ export default function DashboardPage() {
               <Link href="/horoscopes/tarot">
                 <div className="glass-effect rounded-lg p-4 hover:bg-purple-700/50 cursor-pointer transition-all">
                   <p className="text-white font-semibold">🎴 ไพ่ยิปซี</p>
+                </div>
+              </Link>
+              <Link href="/horoscopes/abdul">
+                <div className="glass-effect rounded-lg p-4 bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 cursor-pointer transition-all group">
+                  <p className="text-yellow-400 font-bold group-hover:text-yellow-300">🔮 อับดุล AI (Premium)</p>
+                </div>
+              </Link>
+              <Link href="/consultation">
+                <div className="glass-effect rounded-lg p-4 bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 cursor-pointer transition-all group">
+                  <p className="text-purple-300 font-bold group-hover:text-purple-200">👨‍💼 ทีมหมอดู (จองคิว)</p>
                 </div>
               </Link>
             </div>

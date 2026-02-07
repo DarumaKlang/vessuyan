@@ -54,13 +54,13 @@ export function createPageMetadata(
             type: 'website',
             images: image
                 ? [
-                      {
-                          url: image,
-                          width: 1200,
-                          height: 630,
-                          alt: title,
-                      },
-                  ]
+                    {
+                        url: image,
+                        width: 1200,
+                        height: 630,
+                        alt: title,
+                    },
+                ]
                 : undefined,
         },
         twitter: {
@@ -83,7 +83,7 @@ export const organizationSchema = {
     description: 'เว็บไซต์ดูดวงออนไลน์ โหราศาสตร์ไทย ไพ่ยิปซี ศาสตร์ตัวเลข',
     sameAs: [
         'https://www.facebook.com/vessuyan',
-        'https://line.me/R/ti/p/vessuyan',
+        'https://line.me/R/ti/p/@014rfhez',
     ],
     contactPoint: {
         '@type': 'ContactPoint',

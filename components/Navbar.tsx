@@ -25,7 +25,9 @@ export default function Navbar() {
                     <ul className="hidden lg:flex items-center gap-8">
                         <li><Link href="/" className="text-sm text-text-light hover:text-neon-violet transition-colors font-medium">หน้าแรก</Link></li>
                         <li><Link href="/astrology" className="text-sm text-text-light hover:text-neon-violet transition-colors font-medium">บทความ</Link></li>
+                        <li><Link href="/pricing" className="text-sm text-text-light hover:text-neon-violet transition-colors font-medium">ราคา</Link></li>
                         <li><Link href="/buddha" className="text-sm text-text-light hover:text-neon-violet transition-colors font-medium">พุทธศาสนา</Link></li>
+                        <li><Link href="/consultation" className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors font-bold drop-shadow-[0_0_8px_rgba(234,179,8,0.3)]">จองคิวหมอดู</Link></li>
                         <li><Link href="/contact" className="text-sm text-text-light hover:text-accent-cyan transition-colors font-medium">ติดต่อ</Link></li>
                     </ul>
 
@@ -81,7 +83,9 @@ export default function Navbar() {
                         <ul className="space-y-3">
                             <li><Link href="/" className="block text-sm text-text-light hover:text-neon-violet transition-colors font-medium py-2">หน้าแรก</Link></li>
                             <li><Link href="/astrology" className="block text-sm text-text-light hover:text-neon-violet transition-colors font-medium py-2">บทความ</Link></li>
+                            <li><Link href="/pricing" className="block text-sm text-text-light hover:text-neon-violet transition-colors font-medium py-2">ราคา</Link></li>
                             <li><Link href="/buddha" className="block text-sm text-text-light hover:text-neon-violet transition-colors font-medium py-2">พุทธศาสนา</Link></li>
+                            <li><Link href="/consultation" className="block text-sm text-yellow-400 hover:text-yellow-300 transition-colors font-bold py-2">จองคิวหมอดู</Link></li>
                             <li><Link href="/contact" className="block text-sm text-text-light hover:text-accent-cyan transition-colors font-medium py-2">ติดต่อ</Link></li>
                         </ul>
                     </div>

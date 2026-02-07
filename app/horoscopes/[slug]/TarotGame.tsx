@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react'
 import { getAllTarotCards, TarotCard } from '@/data/tarotData'
 import Navbar from '@/components/Navbar'
-import Link from 'next/link'
 
-export default function TarotPage() {
+export default function TarotGame() {
     const [allCards, setAllCards] = useState<TarotCard[]>([])
     const [selectedCard, setSelectedCard] = useState<TarotCard | null>(null)
+    const [isReversed, setIsReversed] = useState(false)
     const [isShuffling, setIsShuffling] = useState(false)
     const [isFlipped, setIsFlipped] = useState(false)
     const [deck, setDeck] = useState<TarotCard[]>([])
@@ -15,15 +15,16 @@ export default function TarotPage() {
     useEffect(() => {
         const cards = getAllTarotCards()
         setAllCards(cards)
-        // Shuffle initially
-        setDeck([...cards].sort(() => Math.random() - 0.5).slice(0, 15)) // Show only 15 for better UI
+        setDeck([...cards].sort(() => Math.random() - 0.5).slice(0, 15))
     }, [])
 
     const handlePickCard = (card: TarotCard) => {
-        if (selectedCard) return // Only pick once
+        if (selectedCard) return
 
         setIsShuffling(true)
         setTimeout(() => {
+            const reversed = Math.random() < 0.4
+            setIsReversed(reversed)
             setSelectedCard(card)
             setIsShuffling(false)
             setTimeout(() => {
@@ -34,6 +35,7 @@ export default function TarotPage() {
 
     const resetGame = () => {
         setSelectedCard(null)
+        setIsReversed(false)
         setIsFlipped(false)
         setDeck([...allCards].sort(() => Math.random() - 0.5).slice(0, 15))
     }
@@ -63,7 +65,6 @@ export default function TarotPage() {
                                     className="group relative cursor-pointer aspect-[2/3.5] rounded-xl overflow-hidden glass-md border border-white/10 hover:border-neon-violet/50 transition-all transform hover:-translate-y-4 hover:shadow-glow-purple active:scale-95"
                                     style={{ transitionDelay: `${idx * 50}ms` }}
                                 >
-                                    {/* Card Back */}
                                     <div className="absolute inset-0 bg-gradient-mystic flex items-center justify-center">
                                         <div className="w-16 h-16 rounded-full border-2 border-secondary-gold/30 flex items-center justify-center group-hover:border-secondary-gold">
                                             <span className="text-2xl group-hover:scale-125 transition-transform">✨</span>
@@ -81,19 +82,28 @@ export default function TarotPage() {
                             <div className={`relative w-full h-full transition-all duration-1000 preserve-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}>
                                 {/* Front (Shown after flip) */}
                                 <div className="absolute inset-0 backface-hidden rotate-y-180 bg-[#1a0f2e] border-2 border-secondary-gold/40 rounded-2xl overflow-hidden shadow-2xl">
-                                    <img
-                                        src={selectedCard.image}
-                                        alt={selectedCard.name}
-                                        className="w-full h-[300px] md:h-[400px] object-cover opacity-90"
-                                    />
+                                    <div className="relative h-[300px] md:h-[400px] overflow-hidden">
+                                        <img
+                                            src={selectedCard.image}
+                                            alt={selectedCard.name}
+                                            className={`w-full h-full object-cover opacity-90 transition-transform duration-700 ${isReversed ? 'rotate-180' : ''}`}
+                                        />
+                                        {isReversed && (
+                                            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-xs text-secondary-gold font-bold animate-pulse">
+                                                REVERSED
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="p-4 md:p-6 text-center bg-black/40 backdrop-blur-sm h-full">
-                                        <h2 className="text-xl md:text-2xl font-bold text-secondary-gold drop-shadow-lg mb-2">{selectedCard.nameThai}</h2>
+                                        <h2 className="text-xl md:text-2xl font-bold text-secondary-gold drop-shadow-lg mb-2">
+                                            {selectedCard.nameThai} {isReversed ? '(กลับหัว)' : ''}
+                                        </h2>
                                         <div className="w-12 h-1 bg-secondary-gold/30 mx-auto rounded-full"></div>
                                     </div>
                                 </div>
 
                                 {/* Back (Hide after flip) */}
-                                <div className="absolute inset-0 backface-hidden bg-gradient- mystic border-2 border-white/20 rounded-2xl flex items-center justify-center shadow-glow-purple">
+                                <div className="absolute inset-0 backface-hidden bg-gradient-mystic border-2 border-white/20 rounded-2xl flex items-center justify-center shadow-glow-purple">
                                     <span className="text-4xl md:text-6xl animate-pulse">✨</span>
                                 </div>
                             </div>
@@ -108,7 +118,9 @@ export default function TarotPage() {
                                             <span className="text-2xl">🔮</span>
                                             <h3 className="text-xl font-bold">ความหมายโดยรวม</h3>
                                         </div>
-                                        <p className="text-purple-100 leading-relaxed text-lg">{selectedCard.meaning.general}</p>
+                                        <p className="text-purple-100 leading-relaxed text-lg">
+                                            {isReversed ? selectedCard.meaningReversed?.general : selectedCard.meaning.general}
+                                        </p>
                                     </div>
 
                                     <div className="space-y-4">
@@ -116,7 +128,9 @@ export default function TarotPage() {
                                             <span className="text-2xl">💖</span>
                                             <h3 className="text-xl font-bold">ด้านความรัก</h3>
                                         </div>
-                                        <p className="text-purple-100 leading-relaxed text-lg">{selectedCard.meaning.love}</p>
+                                        <p className="text-purple-100 leading-relaxed text-lg">
+                                            {isReversed ? selectedCard.meaningReversed?.love : selectedCard.meaning.love}
+                                        </p>
                                     </div>
 
                                     <div className="space-y-4">
@@ -124,7 +138,9 @@ export default function TarotPage() {
                                             <span className="text-2xl">💼</span>
                                             <h3 className="text-xl font-bold">ด้านการงาน</h3>
                                         </div>
-                                        <p className="text-purple-100 leading-relaxed text-lg">{selectedCard.meaning.work}</p>
+                                        <p className="text-purple-100 leading-relaxed text-lg">
+                                            {isReversed ? selectedCard.meaningReversed?.work : selectedCard.meaning.work}
+                                        </p>
                                     </div>
 
                                     <div className="space-y-4">
@@ -132,7 +148,9 @@ export default function TarotPage() {
                                             <span className="text-2xl">💰</span>
                                             <h3 className="text-xl font-bold">ด้านการเงิน</h3>
                                         </div>
-                                        <p className="text-purple-100 leading-relaxed text-lg">{selectedCard.meaning.money}</p>
+                                        <p className="text-purple-100 leading-relaxed text-lg">
+                                            {isReversed ? selectedCard.meaningReversed?.money : selectedCard.meaning.money}
+                                        </p>
                                     </div>
                                 </div>
 

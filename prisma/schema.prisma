@@ -242,6 +242,8 @@ model Question {
 
 enum PaymentStatus {
   PENDING // รอการชำระเงิน
+  VERIFYING // อยู่ระหว่างการตรวจสอบโดย AI
+  REQUIRES_ADMIN // รอ Admin ตรวจสอบ (AI ไม่แน่ใจ)
   COMPLETED // ชำระแล้ว
   FAILED // ล้มเหลว
   REFUNDED // คืนเงิน
@@ -253,6 +255,7 @@ enum PaymentMethod {
   BANK_TRANSFER
   PAYPAL
   PROMPT_PAY // PromptPay (QR Code)
+  CRYPTO // Solana, Lightning
 }
 
 model Payment {
@@ -273,6 +276,8 @@ model Payment {
 
   transactionId String? @unique
   receiptUrl    String?
+  slipUrl       String? // URL ของสลิปที่อัปโหลด (Manual Transfer)
+  aiVerifiedData Json?   // ผลการตรวจสอบจาก AI (amount, date, ref, confidence)
 
   description String?
 

@@ -9,7 +9,7 @@ interface LineOAWidgetProps {
 }
 
 export default function LineOAWidget({
-    lineOAId = '@vessuyan', // Replace with your actual LINE OA ID
+    lineOAId = '@014rfhez', // Updated to correct ID
     position = 'bottom-right',
     showText = true,
 }: LineOAWidgetProps) {

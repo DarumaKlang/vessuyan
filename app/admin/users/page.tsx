@@ -119,9 +119,34 @@ export default function AdminUsersPage() {
     return (
         <Box minHeight="100vh" bgcolor="#0a0a0c" pt={4} pb={8}>
             <Container maxWidth="lg">
-                <Typography variant="h4" color="white" gutterBottom sx={{ fontWeight: 'bold', mb: 4 }}>
-                    User Management
-                </Typography>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+                    <Typography variant="h4" color="white" sx={{ fontWeight: 'bold' }}>
+                        User Management
+                    </Typography>
+                    <Box display="flex" gap={2}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => router.push('/horoscopes/abdul')}
+                            sx={{
+                                borderRadius: 2,
+                                px: 3,
+                                bgcolor: '#9c27b0',
+                                '&:hover': { bgcolor: '#7b1fa2' },
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            🔮 ไปที่อับดุล AI
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => router.push('/dashboard')}
+                            sx={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)', borderRadius: 2 }}
+                        >
+                            กลับ Dashboard
+                        </Button>
+                    </Box>
+                </Box>
 
                 {error && <Alert severity="error" sx={{ mb: 4 }}>{error}</Alert>}
 

@@ -64,7 +64,7 @@ export default function RootLayout({
         description: 'เว็บไซต์ดูดวงออนไลน์ โหราศาสตร์ไทย ไพ่ยิปซี และศาสตร์ตัวเลข',
         sameAs: [
             'https://www.facebook.com/vessuyan',
-            'https://line.me/R/ti/p/vessuyan',
+            'https://line.me/R/ti/p/@014rfhez',
         ],
         contactPoint: {
             '@type': 'ContactPoint',
@@ -112,7 +112,7 @@ export default function RootLayout({
                 <SessionProvider>
                     {children}
                     <Footer />
-                    <LineOAWidget lineOAId="@vessuyan" position="bottom-right" showText={true} />
+                    <LineOAWidget lineOAId="@014rfhez" position="bottom-right" showText={true} />
                 </SessionProvider>
             </body>
         </html>
