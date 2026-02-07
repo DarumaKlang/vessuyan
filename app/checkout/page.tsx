@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function ManualCheckoutPage() {
+function ManualCheckoutContent() {
     const { data: session } = useSession()
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -171,8 +171,8 @@ export default function ManualCheckoutPage() {
                                 type="submit"
                                 disabled={uploading || !file}
                                 className={`w-full py-4 rounded-2xl font-bold text-lg transition-all transform active:scale-95 flex items-center justify-center ${uploading || !file
-                                        ? 'bg-white/5 text-gray-500 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20 hover:scale-[1.02]'
+                                    ? 'bg-white/5 text-gray-500 cursor-not-allowed'
+                                    : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20 hover:scale-[1.02]'
                                     }`}
                             >
                                 {uploading ? (
@@ -210,5 +210,13 @@ export default function ManualCheckoutPage() {
                 }
             `}</style>
         </main>
+    )
+}
+
+export default function ManualCheckoutPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-[#0a0612] text-white flex items-center justify-center">Loading...</div>}>
+            <ManualCheckoutContent />
+        </Suspense>
     )
 }

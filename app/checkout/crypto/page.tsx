@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useSession } from 'next-auth/react'
@@ -9,7 +9,7 @@ import { QRCodeSVG } from 'qrcode.react'
 
 type PaymentMethod = 'lightning' | 'solana'
 
-export default function CryptoCheckoutPage() {
+function CryptoCheckoutContent() {
     const { data: session } = useSession()
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -234,6 +234,14 @@ export default function CryptoCheckoutPage() {
                 }
             `}</style>
         </main>
+    )
+}
+
+export default function CryptoCheckoutPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-[#0a0612] text-white flex items-center justify-center">Loading...</div>}>
+            <CryptoCheckoutContent />
+        </Suspense>
     )
 }
 

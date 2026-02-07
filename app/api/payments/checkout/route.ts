@@ -3,9 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-02-24.acacia' as any,
-})
+
 
 export async function GET(request: NextRequest) {
     try {
@@ -20,6 +18,15 @@ export async function GET(request: NextRequest) {
         if (tier !== 'PREMIUM') {
             return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
         }
+
+        if (!process.env.STRIPE_SECRET_KEY) {
+            console.error('Missing STRIPE_SECRET_KEY')
+            return NextResponse.json({ error: 'Internal configuration error' }, { status: 500 })
+        }
+
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+            apiVersion: '2025-02-24.acacia' as any,
+        })
 
         // Create Stripe Checkout Session
         const checkoutSession = await stripe.checkout.sessions.create({
